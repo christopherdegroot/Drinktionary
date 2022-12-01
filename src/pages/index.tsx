@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Head from "next/head";
+import AgeModal from "../components/AgeModal";
 
 const Index = () => {
   const [loading, setLoading] = useState(false);
@@ -69,6 +70,8 @@ const Index = () => {
         <title>Mixology</title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
+
+      <AgeModal />
       <h1>Random Cocktail Generator</h1>
       <p>Name: {data.strDrink}</p>
 
