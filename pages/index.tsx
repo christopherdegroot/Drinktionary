@@ -38,7 +38,6 @@ const Index = () => {
 
       let ingredients = [];
       ingredientsArray.forEach((ingredient) => {
-        console.log("ingy", ingredient);
         if (ingredient != null || ingredient != undefined) {
           ingredients.push(ingredient);
         }
@@ -56,10 +55,6 @@ const Index = () => {
   useEffect(() => {
     getIngredients();
   }, [data]);
-
-  useEffect(() => {
-    console.log("set ingredients:", ingredients);
-  }, [ingredients]);
 
   // Conditional page renders for loading, no data, and error states
   if (loading) return <p>Loading...</p>;
