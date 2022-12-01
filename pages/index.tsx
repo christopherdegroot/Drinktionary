@@ -37,6 +37,8 @@ const Index = () => {
       <h1>Random Cocktail Generator</h1>
       <p>{data.strDrink}</p>
       <p>{data.strInstructions}</p>
+      <p>{data.strCategory}</p>
+      <p>{data.strGlass}</p>
       <button onClick={() => getRandomCocktailData()}>New Cocktail</button>
     </>
   );
