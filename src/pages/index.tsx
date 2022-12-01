@@ -97,27 +97,35 @@ const Index = () => {
 
       <p>Category: {data.strCategory}</p>
       <p>Glass: {data.strGlass}</p>
-      <Button onClick={() => getData()}>Find a New Cocktail!</Button>
-      <select
-        onChange={(e) => getData(e.target.value)}
-        name="drinks"
-        id="drinks"
-      >
-        <option value="cocktail">Cocktail</option>
-        <option value="ordinary_drink">Ordinary Drink</option>
-        <option value="shot">Shot</option>
-        <option value="punch_/_party_drink">Punch/Party Drink</option>
-        <option value="beer">Beer</option>
-        <option value="shake">Shake</option>
-        <option value="coffee_/_tea">Coffee/Tea</option>
-        <option value="other/unknown">Other/Unknown</option>
-      </select>
+      <OptionsContainer>
+        <Button onClick={() => getData()}>Find a New Cocktail!</Button>
+        <select
+          onChange={(e) => getData(e.target.value)}
+          name="drinks"
+          id="drinks"
+        >
+          <option value="cocktail">Cocktail</option>
+          <option value="ordinary_drink">Ordinary Drink</option>
+          <option value="shot">Shot</option>
+          <option value="punch_/_party_drink">Punch/Party Drink</option>
+          <option value="beer">Beer</option>
+          <option value="shake">Shake</option>
+          <option value="coffee_/_tea">Coffee/Tea</option>
+          <option value="other/unknown">Other/Unknown</option>
+        </select>
+      </OptionsContainer>
     </MainPage>
   );
 };
 
+const OptionsContainer = styled.div`
+  display: flex;
+`;
+
 const MainPage = styled.div`
-  background: #eef1ff;
+  background: white;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Button = styled.button`
@@ -136,11 +144,8 @@ const Button = styled.button`
 
   color: white;
 
-  position: absolute;
   width: auto;
   height: 40px;
-  left: 168px;
-  top: 136px;
 
   /* Primary_Gradient */
 
