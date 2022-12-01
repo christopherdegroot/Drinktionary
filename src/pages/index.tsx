@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Head from "next/head";
 
 const Index = () => {
   const [loading, setLoading] = useState(false);
@@ -64,6 +65,10 @@ const Index = () => {
   // happy path output
   return (
     <>
+      <Head>
+        <title>Mixology</title>
+        <link rel="icon" href="/favicon.svg" />
+      </Head>
       <h1>Random Cocktail Generator</h1>
       <p>Name: {data.strDrink}</p>
 
