@@ -71,7 +71,7 @@ const Index = () => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
 
-      <AgeModal />
+      {/* <AgeModal /> */}
       <h1>Random Cocktail Generator</h1>
       <p>Name: {data.strDrink}</p>
 
