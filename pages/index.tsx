@@ -70,17 +70,17 @@ const Index = () => {
   return (
     <>
       <h1>Random Cocktail Generator</h1>
-      <p>{data.strDrink}</p>
-      <p>{data.strIngredient1}</p>
-      <p>ingredients:</p>
+      <p>Name: {data.strDrink}</p>
+
+      <p>Ingredients:</p>
       <ul>
         {ingredients.map((item) => {
           return <li key={item}>{item}</li>;
         })}
       </ul>
 
-      <p>{data.strCategory}</p>
-      <p>{data.strGlass}</p>
+      <p>Category: {data.strCategory}</p>
+      <p>Glass: {data.strGlass}</p>
       <button onClick={() => getData()}>New Cocktail</button>
       <select
         onChange={(e) => getData(e.target.value)}
