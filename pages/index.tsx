@@ -7,7 +7,7 @@ const Index = () => {
   const [error, setError] = useState(false);
 
   // function to get 1 random cocktal
-  const getRandomCocktailData = async (searchTerm?) => {
+  const getData = async (searchTerm?) => {
     axios
       .get("https://www.thecocktaildb.com/api/json/v1/1/random.php")
       .then((res) => {
@@ -23,7 +23,7 @@ const Index = () => {
 
   // Get random cocktail on page load
   useEffect(() => {
-    getRandomCocktailData();
+    getData();
   }, []);
 
   // Conditional page renders for loading, no data, and error states
@@ -39,7 +39,15 @@ const Index = () => {
       <p>{data.strInstructions}</p>
       <p>{data.strCategory}</p>
       <p>{data.strGlass}</p>
-      <button onClick={() => getRandomCocktailData()}>New Cocktail</button>
+      <button onClick={() => getData()}>New Cocktail</button>
+      <select name="drinks" id="drinks">
+        <option value="cocktail">Cocktail</option>
+        <option value="ordinaryDrink">Ordinary Drink</option>
+        <option value="shot">Shot</option>
+        <option value="punchParty">Punch/Party Drink</option>
+        <option value="beer">Beer</option>
+        <option value="coffeeTea">Coffee/Tea</option>
+      </select>
     </>
   );
 };
