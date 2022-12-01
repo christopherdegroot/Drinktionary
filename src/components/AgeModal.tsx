@@ -3,13 +3,24 @@ import { useState } from "react";
 
 export default function AgeModal() {
   const [showModal, setShowModal] = useState(true);
-  const [message, setMesasage] = useState("Please Enter your Date of Birth");
+  const [message, setMesasage] = useState(
+    "To Continue, Please Enter your Date of Birth"
+  );
+  const [age, setAge] = useState(0);
 
   const handleDate = function (date) {
-    let currentTime = new Date();
-    let givenDate = new Date(date);
-    console.log("current time: ", currentTime);
-    console.log("given date:", givenDate);
+    let dateOfBirth = new Date(date);
+    let monthDifference = Date.now() - dateOfBirth.getTime();
+    let givenAge = new Date(monthDifference);
+    let year = givenAge.getUTCFullYear();
+    let age = Math.abs(year - 1970);
+    console.log("age: ", age);
+    setAge(age);
+    if (age >= 19) {
+      setShowModal(false);
+    } else {
+      setMesasage("Please Drink Responsibly");
+    }
   };
 
   return (
@@ -18,15 +29,13 @@ export default function AgeModal() {
         <>
           <ModalOverlay>
             <Container className="flex-column-centered card-shadow">
-              <h1>{message}</h1>
-              <DatePicker>
-                <input
-                  onChange={(e) => {
-                    handleDate(e.target.value);
-                  }}
-                  type="date"
-                ></input>
-              </DatePicker>
+              <Message>{message}</Message>
+              <DatePicker
+                onChange={(e) => {
+                  handleDate(e.target.value);
+                }}
+                type="date"
+              ></DatePicker>
             </Container>
           </ModalOverlay>
         </>
@@ -34,6 +43,8 @@ export default function AgeModal() {
     </>
   );
 }
+
+const Message = styled.p``;
 
 const ModalOverlay = styled.div`
   display: flex;
@@ -45,10 +56,8 @@ const ModalOverlay = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.4);
-  :hover {
-    cursor: pointer;
-  }
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(3px);
 `;
 
 const Container = styled.div`
@@ -64,4 +73,8 @@ const Container = styled.div`
   z-index: 10;
 `;
 
-const DatePicker = styled.div``;
+const DatePicker = styled.input`
+  :hover {
+    cursor: pointer;
+  }
+`;
