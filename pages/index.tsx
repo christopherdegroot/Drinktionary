@@ -7,8 +7,7 @@ const Index = () => {
   const [error, setError] = useState(false);
 
   // function to get 1 random cocktal
-  const getRandomCocktailData = async () => {
-    setLoading(true);
+  const getRandomCocktailData = async (searchTerm?) => {
     axios
       .get("https://www.thecocktaildb.com/api/json/v1/1/random.php")
       .then((res) => {
@@ -35,8 +34,9 @@ const Index = () => {
   // happy path output
   return (
     <>
-      <h1>Random Cocktail</h1>
+      <h1>Random Cocktail Generator</h1>
       <p>{data.strDrink}</p>
+      <button onClick={() => getRandomCocktailData()}>New Cocktail</button>
     </>
   );
 };
