@@ -3,11 +3,13 @@ import { useState } from "react";
 
 export default function AgeModal() {
   const [showModal, setShowModal] = useState(true);
+  const [message, setMesasage] = useState("Please Enter your Date of Birth");
 
   const handleDate = function (date) {
     let currentTime = new Date();
+    let givenDate = new Date(date);
     console.log("current time: ", currentTime);
-    console.log("given date:", date);
+    console.log("given date:", givenDate);
   };
 
   return (
@@ -16,7 +18,7 @@ export default function AgeModal() {
         <>
           <ModalOverlay>
             <Container className="flex-column-centered card-shadow">
-              <h1>Please Enter your Date of Birth</h1>
+              <h1>{message}</h1>
               <DatePicker>
                 <input
                   onChange={(e) => {
@@ -32,17 +34,6 @@ export default function AgeModal() {
     </>
   );
 }
-
-const CloseModalButton = styled.button`
-  background-color: inherit;
-  position: absolute;
-  padding: 1rem;
-
-  :hover {
-    cursor: pointer;
-    opacity: 0.4;
-  }
-`;
 
 const ModalOverlay = styled.div`
   display: flex;
