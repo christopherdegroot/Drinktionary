@@ -36,6 +36,7 @@ const Index = () => {
     <>
       <h1>Random Cocktail Generator</h1>
       <p>{data.strDrink}</p>
+      <p>{data.strInstructions}</p>
       <button onClick={() => getRandomCocktailData()}>New Cocktail</button>
     </>
   );
