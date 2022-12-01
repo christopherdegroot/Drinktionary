@@ -5,6 +5,7 @@ const Index = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
+  const [ingredients, setIngredients] = useState([]);
 
   // function to get 1 random cocktal
   const getData = async (searchTerm?) => {
@@ -25,14 +26,40 @@ const Index = () => {
       });
   };
 
-  const handleChange = function (value?) {
-    console.log("value", value);
+  const getIngredients = () => {
+    if (data) {
+      let ingredientsKeys = Object.keys(data).filter((key) =>
+        key.includes("strIngredient")
+      );
+
+      let ingredientsArray = ingredientsKeys.map((ingredient) => {
+        return data[ingredient];
+      });
+
+      let ingredients = [];
+      ingredientsArray.forEach((ingredient) => {
+        console.log("ingy", ingredient);
+        if (ingredient != null || ingredient != undefined) {
+          ingredients.push(ingredient);
+        }
+      });
+
+      setIngredients(ingredients);
+    }
   };
 
   // Get random cocktail on page load
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    getIngredients();
+  }, [data]);
+
+  useEffect(() => {
+    console.log("set ingredients:", ingredients);
+  }, [ingredients]);
 
   // Conditional page renders for loading, no data, and error states
   if (loading) return <p>Loading...</p>;
@@ -44,7 +71,14 @@ const Index = () => {
     <>
       <h1>Random Cocktail Generator</h1>
       <p>{data.strDrink}</p>
-      <p>{data.strInstructions}</p>
+      <p>{data.strIngredient1}</p>
+      <p>ingredients:</p>
+      <ul>
+        {ingredients.map((item) => {
+          return <li key={item}>{item}</li>;
+        })}
+      </ul>
+
       <p>{data.strCategory}</p>
       <p>{data.strGlass}</p>
       <button onClick={() => getData()}>New Cocktail</button>
