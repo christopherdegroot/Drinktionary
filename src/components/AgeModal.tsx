@@ -14,18 +14,19 @@ export default function AgeModal() {
     <>
       {showModal && (
         <>
-          <ModalOverlay />
-          <Container className="flex-column-centered card-shadow">
-            <h1>Please Enter your Date of Birth</h1>
-            <DatePicker>
-              <input
-                onChange={(e) => {
-                  handleDate(e.target.value);
-                }}
-                type="date"
-              ></input>
-            </DatePicker>
-          </Container>
+          <ModalOverlay>
+            <Container className="flex-column-centered card-shadow">
+              <h1>Please Enter your Date of Birth</h1>
+              <DatePicker>
+                <input
+                  onChange={(e) => {
+                    handleDate(e.target.value);
+                  }}
+                  type="date"
+                ></input>
+              </DatePicker>
+            </Container>
+          </ModalOverlay>
         </>
       )}
     </>
@@ -44,6 +45,9 @@ const CloseModalButton = styled.button`
 `;
 
 const ModalOverlay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -62,8 +66,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50rem;
-  height: 20rem;
+  width: 80vw;
+  height: 80vh;
   border-radius: 1.6rem;
   position: fixed;
   z-index: 10;
