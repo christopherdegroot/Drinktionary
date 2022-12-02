@@ -74,6 +74,10 @@ const Ingredient = styled.li`
 const GlassType = styled.p`
   color: lightSlateGrey;
   font-size: 18px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const Dot = styled.p`
@@ -90,6 +94,10 @@ const IngredientList = styled.ul`
   & :first-of {
     list-style: none;
   }
+
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -102,6 +110,9 @@ const Category = styled.p`
   color: grey;
   font-size: 22px;
   margin-left: 10px;
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const IngredientCount = styled.span`
@@ -114,6 +125,10 @@ const CocktailName = styled.p`
   font-size: 32px;
   color: grey;
   margin-right: 10px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 const IngredientsContainer = styled.div`
@@ -131,9 +146,6 @@ const DrinksCardWrapper = styled.div`
   border: white
   border-radius: 100px;
   padding: 20px;
-  margin-right: 50px;
-  margin-left: 50px;
-  margin-top: 30px;
 
   background: #FFFFFF;
 
