@@ -38,28 +38,29 @@ export default function DrinksCard(props) {
 
   return (
     <DrinksCardWrapper>
-      <TitleWrapper>
-        <CocktailName>{data.strDrink} </CocktailName>
-        <Dot>•</Dot>
-        <Category> {data.strCategory}</Category>
-      </TitleWrapper>
+      <div>
+        <TitleWrapper>
+          <CocktailName>{data.strDrink} </CocktailName>
+          <Dot>•</Dot>
+          <Category> {data.strCategory}</Category>
+        </TitleWrapper>
 
-      <IngredientsContainer>
-        <Image
-          height={"24"}
-          width={"24"}
-          src={Ingredients}
-          alt="ingredients"
-        ></Image>
-        <p> </p>
-        <IngredientCount>{ingredients.length} Ingredients</IngredientCount>
-      </IngredientsContainer>
-      <IngredientList>
-        {ingredients.map((item, index) => {
-          return <Ingredient key={index}>{item} </Ingredient>;
-        })}
-      </IngredientList>
-
+        <IngredientsContainer>
+          <Image
+            height={"24"}
+            width={"24"}
+            src={Ingredients}
+            alt="ingredients"
+          ></Image>
+          <p> </p>
+          <IngredientCount>{ingredients.length} Ingredients</IngredientCount>
+        </IngredientsContainer>
+        <IngredientList>
+          {ingredients.map((item, index) => {
+            return <Ingredient key={index}>{item} </Ingredient>;
+          })}
+        </IngredientList>
+      </div>
       <GlassType>Use a {data.strGlass}</GlassType>
     </DrinksCardWrapper>
   );
@@ -74,6 +75,7 @@ const Ingredient = styled.li`
 const GlassType = styled.p`
   color: lightSlateGrey;
   font-size: 18px;
+  margin-bottom: 0px;
 
   @media only screen and (max-width: 768px) {
     font-size: 16px;
@@ -143,6 +145,7 @@ const DrinksCardWrapper = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border: white
   border-radius: 100px;
   padding: 20px;
