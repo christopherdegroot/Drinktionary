@@ -453,7 +453,9 @@ const DrinksListContainer = styled.div`
   }
 `;
 
-const P = styled.p``;
+const P = styled.p`
+  font-size: 24px;
+`;
 
 const Limit = styled.div`
   display: flex;
@@ -462,7 +464,22 @@ const Limit = styled.div`
 `;
 
 const NumberLimit = styled.select`
-  width: 50px;
+  appearance: none;
+  background-color: transparent;
+  border: solid;
+  border-radius: 8px;
+  border-color: grey;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  :hover {
+    border-color: lightGrey;
+  }
 `;
 
 const NoDrinksMessage = styled.div`
