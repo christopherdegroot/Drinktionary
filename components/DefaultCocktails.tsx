@@ -25,6 +25,22 @@ const DefaultCocktails = () => {
       });
   };
 
+  const [IsDropdownActive, setIsDropdownActive] = useState(false);
+
+  const [listening, setListening] = useState(false);
+  useEffect(
+    listenForOutsideClick(listening, setListening, menuRef, setIsDropdownActive)
+  );
+
+  const openMenu = () => {
+    setIsDropdownActive(!IsDropdownActive);
+  };
+
+  const handleMenuClick = (option) => {
+    getData(option);
+    setIsDropdownActive(!IsDropdownActive);
+  };
+
   const getIngredients = () => {
     if (data) {
       let ingredientsKeys = Object.keys(data).filter((key) =>
@@ -65,6 +81,94 @@ const DefaultCocktails = () => {
       <MainTitle>
         <h2>The Drinktionary</h2>
       </MainTitle>
+      <OptionsContainer>
+        <Button onClick={() => getData(letter)}>Randomize!</Button>
+        <div className="container">
+          <div className="menu-container">
+            <button
+              ref={menuRef}
+              onClick={() => openMenu()}
+              className="menu-trigger"
+            >
+              <span>By Category</span>
+              <img
+                src="https://img.icons8.com/fluency/512/cocktail.png"
+                width="30"
+                height="30"
+                alt="drink icon"
+              />
+            </button>
+            <nav className={`menu ${IsDropdownActive ? "active" : "inactive"}`}>
+              <ul>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("cocktail")}
+                    value="cocktail"
+                  >
+                    Cocktail
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("ordinary_drink")}
+                    value="ordinary_drink"
+                  >
+                    Ordinary Drink
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("shot")}
+                    value="shot"
+                  >
+                    Shot
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("punch_/_party_drink")}
+                    value="punch_/_party_drink"
+                  >
+                    Punch/Party Drink
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("beer")}
+                    value="beer"
+                  >
+                    Beer
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("shake")}
+                    value="shake"
+                  >
+                    Shake
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("coffee_/_tea")}
+                    value="coffee_/_tea"
+                  >
+                    Coffee/Tea
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("other/unknown")}
+                    value="other/unknown"
+                  >
+                    Other/Unknown
+                  </StyledOption>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </OptionsContainer>
       {data.slice(0, 5).map((drink) => {
         console.log("drink:", drink);
         return <DrinksCard data={drink}></DrinksCard>;
@@ -88,6 +192,39 @@ const MainTitle = styled.div`
     font-weight: 300;
     font-size: 48px;
   }
+`;
+
+const OptionsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+  width: 100%;
+`;
+
+const Button = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  gap: 4px;
+  border: white;
+
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: white;
+
+  width: 220px;
+  height: 40px;
+
+  background: cornflowerBlue;
+  border-radius: 100px;
 `;
 
 export default DefaultCocktails;
