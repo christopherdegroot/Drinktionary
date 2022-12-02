@@ -164,6 +164,7 @@ const DefaultCocktails = () => {
             </nav>
           </div>
         </div>
+
         <AlphabetSelector>
           <li
             className={letter === "A" ? "active" : ""}
@@ -401,13 +402,17 @@ const DefaultCocktails = () => {
           </li>
         </AlphabetSelector>
       </OptionsContainer>
-      {data ? (
-        data.slice(0, limit).map((drink, index) => {
-          return <DrinksCard key={index} data={drink}></DrinksCard>;
-        })
-      ) : (
-        <NoDrinksMessage>No drinks, try again!</NoDrinksMessage>
-      )}
+
+      <DrinksListContainer>
+        {data ? (
+          data.slice(0, limit).map((drink, index) => {
+            return <DrinksCard key={index} data={drink}></DrinksCard>;
+          })
+        ) : (
+          <NoDrinksMessage>No drinks, try again!</NoDrinksMessage>
+        )}
+      </DrinksListContainer>
+
       <OptionsContainer>
         <Limit>
           <P>Select Limit</P>
@@ -426,6 +431,27 @@ const DefaultCocktails = () => {
     </>
   );
 };
+
+const DrinksListContainer = styled.div`
+  margin-left: 30px;
+  margin-right: 30px;
+  @media only screen and (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  @media only screen and (max-width: 1199px) {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
 const P = styled.p``;
 
@@ -458,6 +484,15 @@ border-radius: 90px;
 width: 80%;
 overflow: hidden;
 
+@media only screen and (max-width: 768px) {
+width: 90%;
+padding: 0px;
+}
+
+
+
+
+
 
 li {
   overflow: hidden;
@@ -469,6 +504,10 @@ li {
     padding-right: 3px;
     display:inline;
     color: grey;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 12px;
+      }
 
    
 }
@@ -502,6 +541,14 @@ const MainTitle = styled.div`
   h2 {
     font-weight: 300;
     font-size: 48px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 36px;
+    }
+  }
+  
   }
 `;
 
