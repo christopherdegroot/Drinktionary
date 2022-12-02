@@ -44,7 +44,7 @@ export default function AgeModal() {
   );
 }
 
-const Message = styled.p``;
+const Message = styled.h1``;
 
 const ModalOverlay = styled.div`
   display: flex;
@@ -74,6 +74,9 @@ const Container = styled.div`
 `;
 
 const DatePicker = styled.input`
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
   :hover {
     cursor: pointer;
   }
