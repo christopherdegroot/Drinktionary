@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AgeModal() {
   const [showModal, setShowModal] = useState(true);
   const [message, setMesasage] = useState(
-    "To Continue, Please Enter your Date of Birth"
+    "To Continue, Please Enter Your Date of Birth"
   );
   const [age, setAge] = useState(0);
 
   const handleDate = function (date) {
+    console.log("date", date);
     let dateOfBirth = new Date(date);
     let monthDifference = Date.now() - dateOfBirth.getTime();
     let givenAge = new Date(monthDifference);
@@ -44,7 +45,10 @@ export default function AgeModal() {
   );
 }
 
-const Message = styled.h1``;
+const Message = styled.h1`
+  text-align: center;
+  width: 500px;
+`;
 
 const ModalOverlay = styled.div`
   display: flex;
@@ -55,13 +59,12 @@ const ModalOverlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 99;
 
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(7px);
 `;
 
 const Container = styled.div`
-  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;

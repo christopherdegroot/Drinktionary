@@ -7,7 +7,6 @@ import DrinksCard from "./DrinksCard";
 const DefaultCocktails = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
-  const [ingredients, setIngredients] = useState([]);
   const menuRef2 = useRef(null);
   const [letter, setLetter] = useState("A");
   const [limit, setLimit] = useState(5);
@@ -164,6 +163,7 @@ const DefaultCocktails = () => {
             </nav>
           </div>
         </div>
+
         <AlphabetSelector>
           <li
             className={letter === "A" ? "active" : ""}
@@ -401,13 +401,17 @@ const DefaultCocktails = () => {
           </li>
         </AlphabetSelector>
       </OptionsContainer>
-      {data ? (
-        data.slice(0, limit).map((drink, index) => {
-          return <DrinksCard key={index} data={drink}></DrinksCard>;
-        })
-      ) : (
-        <NoDrinksMessage>No drinks, try again!</NoDrinksMessage>
-      )}
+
+      <DrinksListContainer>
+        {data ? (
+          data.slice(0, limit).map((drink, index) => {
+            return <DrinksCard key={index} data={drink}></DrinksCard>;
+          })
+        ) : (
+          <NoDrinksMessage>No drinks, try again!</NoDrinksMessage>
+        )}
+      </DrinksListContainer>
+
       <OptionsContainer>
         <Limit>
           <P>Select Limit</P>
@@ -427,7 +431,30 @@ const DefaultCocktails = () => {
   );
 };
 
-const P = styled.p``;
+const DrinksListContainer = styled.div`
+  margin-left: 30px;
+  margin-right: 30px;
+  @media only screen and (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  @media only screen and (max-width: 1199px) {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const P = styled.p`
+  font-size: 24px;
+`;
 
 const Limit = styled.div`
   display: flex;
@@ -436,7 +463,22 @@ const Limit = styled.div`
 `;
 
 const NumberLimit = styled.select`
-  width: 50px;
+  appearance: none;
+  background-color: transparent;
+  border: solid;
+  border-radius: 8px;
+  border-color: grey;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  :hover {
+    border-color: lightGrey;
+  }
 `;
 
 const NoDrinksMessage = styled.div`
@@ -458,6 +500,15 @@ border-radius: 90px;
 width: 80%;
 overflow: hidden;
 
+@media only screen and (max-width: 768px) {
+width: 90%;
+padding: 0px;
+}
+
+
+
+
+
 
 li {
   overflow: hidden;
@@ -469,6 +520,10 @@ li {
     padding-right: 3px;
     display:inline;
     color: grey;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 12px;
+      }
 
    
 }
@@ -502,6 +557,14 @@ const MainTitle = styled.div`
   h2 {
     font-weight: 300;
     font-size: 48px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 36px;
+    }
+  }
+  
   }
 `;
 
