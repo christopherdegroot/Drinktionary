@@ -7,6 +7,3 @@
 2. `cd` into the root directory
 3. Run `yarn install` to install all project packages
 5. Run `yarn dev` to start app locally
-
-## Link to Github Pages Deployment
-
