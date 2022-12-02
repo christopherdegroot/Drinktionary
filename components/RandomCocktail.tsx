@@ -66,7 +66,7 @@ const RandomCocktail = () => {
   return (
     <>
       <OptionsContainer>
-        <Button onClick={() => getData()}>Find a New Cocktail!</Button>
+        <Button onClick={() => getData()}>Randomize!</Button>
         <div className="container">
           <div className="menu-container">
             <button
