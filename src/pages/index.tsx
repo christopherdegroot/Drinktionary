@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import Head from "next/head";
 import AgeModal from "../components/AgeModal";
-import RandomCocktail from "../../components/RandomCocktail";
 import DefaultCocktails from "../../components/DefaultCocktails";
+import RandomCocktail from "../../components/RandomCocktail";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <DefaultCocktails />
       <RandomCocktail />
       {/* <AgeModal /> */}
+      <ScrollToTopButton></ScrollToTopButton>
     </>
   );
 };
