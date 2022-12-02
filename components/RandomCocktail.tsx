@@ -33,19 +33,26 @@ const RandomCocktail = () => {
           : "https://www.thecocktaildb.com/api/json/v1/1/random.php"
       )
       .then((res) => {
-        console.log("res.data:", res.data);
+        const resLength = res.data.drinks.length;
+        function getRandomInt(max) {
+          return Math.floor(Math.random() * max);
+        }
+        const randomInLengthRange = getRandomInt(resLength);
         if (searchTerm) {
           axios
             .get(
-              `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${res.data.drinks[0].idDrink}
+              `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${res.data.drinks[randomInLengthRange].idDrink}
           `
             )
-            .then((res) => {
-              setData(res.data.drinks[0]);
+            .then((res2) => {
+              console.log("res", res2);
+              setData(res2.data.drinks[0]);
+              setLoading(false);
             });
+        } else {
+          setData(res.data.drinks[0]);
+          setLoading(false);
         }
-        setData(res.data.drinks[0]);
-        setLoading(false);
       })
       .catch(function (error) {
         console.log("error:", error);
