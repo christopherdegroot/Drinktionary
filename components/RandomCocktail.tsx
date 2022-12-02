@@ -64,7 +64,7 @@ const RandomCocktail = () => {
 
   // happy path output
   return (
-    <>
+    <MainContainer>
       <MainTitle>
         <h2>Mix It Up</h2>
       </MainTitle>
@@ -151,9 +151,13 @@ const RandomCocktail = () => {
         </div>
       </OptionsContainer>
       <DrinksCard data={data}></DrinksCard>
-    </>
+    </MainContainer>
   );
 };
+
+const MainContainer = styled.div`
+  padding-bottom: 90px;
+`;
 
 const StyledOption = styled.option`
   cursor: pointer;
