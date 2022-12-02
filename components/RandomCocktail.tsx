@@ -65,6 +65,9 @@ const RandomCocktail = () => {
   // happy path output
   return (
     <>
+      <MainTitle>
+        <h2>Mix It Up</h2>
+      </MainTitle>
       <OptionsContainer>
         <Button onClick={() => getData()}>Randomize!</Button>
         <div className="container">
@@ -211,6 +214,19 @@ const Button = styled.button`
 
   background: cornflowerBlue;
   border-radius: 100px;
+`;
+
+const MainTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  width: 100vw;
+
+  h2 {
+    font-weight: 300;
+    font-size: 36px;
+  }
 `;
 
 export default RandomCocktail;
