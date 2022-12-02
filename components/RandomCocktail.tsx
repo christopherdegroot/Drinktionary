@@ -1,19 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styled from "@emotion/styled";
-import listenForOutsideClick from "../src/utils/listenForOutsideClicks";
 import DrinksCard from "./DrinksCard";
 
 const RandomCocktail = (isMobile) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [IsDropdownActive, setIsDropdownActive] = useState(false);
-
-  const menuRef = useRef(null);
-  const [listening, setListening] = useState(false);
-  useEffect(
-    listenForOutsideClick(listening, setListening, menuRef, setIsDropdownActive)
-  );
 
   const openMenu = () => {
     setIsDropdownActive(!IsDropdownActive);
@@ -77,85 +70,20 @@ const RandomCocktail = (isMobile) => {
       </MainTitle>
       <OptionsContainer>
         <Button onClick={() => getData()}>Randomize!</Button>
-        <div className="container">
-          <div className="menu-container">
-            <button
-              ref={menuRef}
-              onClick={() => openMenu()}
-              className="menu-trigger"
-            >
-              <span>By Category</span>
-            </button>
-            <nav className={`menu ${IsDropdownActive ? "active" : "inactive"}`}>
-              <ul>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("cocktail")}
-                    value="cocktail"
-                  >
-                    Cocktail
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("ordinary_drink")}
-                    value="ordinary_drink"
-                  >
-                    Ordinary Drink
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("shot")}
-                    value="shot"
-                  >
-                    Shot
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("punch_/_party_drink")}
-                    value="punch_/_party_drink"
-                  >
-                    Punch/Party Drink
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("beer")}
-                    value="beer"
-                  >
-                    Beer
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("shake")}
-                    value="shake"
-                  >
-                    Shake
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("coffee_/_tea")}
-                    value="coffee_/_tea"
-                  >
-                    Coffee/Tea
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("other/unknown")}
-                    value="other/unknown"
-                  >
-                    Other/Unknown
-                  </StyledOption>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+        <select
+          id="drinks"
+          name="drinks"
+          onChange={(e) => getData(e.target.value)}
+        >
+          <option value="cocktail">Cocktail</option>
+          <option value="ordinary_drink">Ordinary Drink</option>
+          <option value="shot">Shot</option>
+          <option value="punch_/_party_drink">Punch/Party Drink</option>
+          <option value="beer">Beer</option>
+          <option value="shake">Shake</option>
+          <option value="coffee_/_tea">Coffee/Tea</option>
+          <option value="other/unknown">Other/Unknown</option>
+        </select>
       </OptionsContainer>
       <DrinksListContainer>
         <DrinksCard data={data}></DrinksCard>
