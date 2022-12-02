@@ -62,35 +62,10 @@ const DefaultCocktails = () => {
     setIsDropdownActive(!IsDropdownActive);
   };
 
-  const getIngredients = () => {
-    if (data) {
-      let ingredientsKeys = Object.keys(data).filter((key) =>
-        key.includes("strIngredient")
-      );
-
-      let ingredientsArray = ingredientsKeys.map((ingredient) => {
-        return data[ingredient];
-      });
-
-      let ingredients = [];
-      ingredientsArray.forEach((ingredient) => {
-        if (ingredient != null || ingredient != undefined) {
-          ingredients.push(ingredient);
-        }
-      });
-
-      setIngredients(ingredients);
-    }
-  };
-
   // Get random cocktail on page load
   useEffect(() => {
     getData(letter);
   }, []);
-
-  useEffect(() => {
-    getIngredients();
-  }, [data]);
 
   // Conditional page renders for loading, no data, and error states
   if (loading) return <p>Loading...</p>;
@@ -472,9 +447,11 @@ cursor: pointer;
 padding: 15px;
 border-radius: 90px;
 width: 80%;
+overflow: hidden;
 
 
 li {
+  overflow: hidden;
     padding:0px;
     border-right:1px solid @darkgrey;
     font-size: 18px;
