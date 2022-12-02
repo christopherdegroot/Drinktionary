@@ -10,6 +10,7 @@ const DefaultCocktails = () => {
   const [ingredients, setIngredients] = useState([]);
   const menuRef = useRef(null);
   const [letter, setLetter] = useState("a");
+  const [limit, setLimit] = useState(5);
 
   // function to get 1 random cocktal
   const getData = async (letter?, category?) => {
@@ -100,7 +101,108 @@ const DefaultCocktails = () => {
       <MainTitle>
         <h2>The Drinktionary</h2>
       </MainTitle>
+      {data ? (
+        data.slice(0, limit).map((drink) => {
+          return <DrinksCard data={drink}></DrinksCard>;
+        })
+      ) : (
+        <NoDrinksMessage>No drinks, try again!</NoDrinksMessage>
+      )}
       <OptionsContainer>
+        <Limit>
+          <P>Select Limit</P>
+          <NumberLimit
+            onChange={(e) => {
+              setLimit(parseInt(e.target.value));
+            }}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+          </NumberLimit>
+        </Limit>
+        <div className="container">
+          <div className="menu-container">
+            <button
+              ref={menuRef}
+              onClick={() => openMenu()}
+              className="menu-trigger"
+              id="menu-top"
+            >
+              <span>By Category</span>
+            </button>
+            <nav className={`menu ${IsDropdownActive ? "active" : "inactive"}`}>
+              <ul>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("cocktail")}
+                    value="cocktail"
+                  >
+                    Cocktail
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("ordinary_drink")}
+                    value="ordinary_drink"
+                  >
+                    Ordinary Drink
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("shot")}
+                    value="shot"
+                  >
+                    Shot
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("punch_/_party_drink")}
+                    value="punch_/_party_drink"
+                  >
+                    Punch/Party Drink
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("beer")}
+                    value="beer"
+                  >
+                    Beer
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("shake")}
+                    value="shake"
+                  >
+                    Shake
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("coffee_/_tea")}
+                    value="coffee_/_tea"
+                  >
+                    Coffee/Tea
+                  </StyledOption>
+                </li>
+                <li>
+                  <StyledOption
+                    onClick={() => handleMenuClick("other/unknown")}
+                    value="other/unknown"
+                  >
+                    Other/Unknown
+                  </StyledOption>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
         <AlphabetSelector>
           <li
             onClick={() => {
@@ -285,97 +387,22 @@ const DefaultCocktails = () => {
             Z
           </li>
         </AlphabetSelector>
-        <div className="container">
-          <div className="menu-container">
-            <button
-              ref={menuRef}
-              onClick={() => openMenu()}
-              className="menu-trigger"
-              id="menu-top"
-            >
-              <span>By Category</span>
-            </button>
-            <nav className={`menu ${IsDropdownActive ? "active" : "inactive"}`}>
-              <ul>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("cocktail")}
-                    value="cocktail"
-                  >
-                    Cocktail
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("ordinary_drink")}
-                    value="ordinary_drink"
-                  >
-                    Ordinary Drink
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("shot")}
-                    value="shot"
-                  >
-                    Shot
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("punch_/_party_drink")}
-                    value="punch_/_party_drink"
-                  >
-                    Punch/Party Drink
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("beer")}
-                    value="beer"
-                  >
-                    Beer
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("shake")}
-                    value="shake"
-                  >
-                    Shake
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("coffee_/_tea")}
-                    value="coffee_/_tea"
-                  >
-                    Coffee/Tea
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("other/unknown")}
-                    value="other/unknown"
-                  >
-                    Other/Unknown
-                  </StyledOption>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
       </OptionsContainer>
-      {data ? (
-        data.slice(0, 5).map((drink) => {
-          return <DrinksCard data={drink}></DrinksCard>;
-        })
-      ) : (
-        <NoDrinksMessage>No drinks, try again!</NoDrinksMessage>
-      )}
     </>
   );
 };
+
+const P = styled.p``;
+
+const Limit = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const NumberLimit = styled.select`
+  width: 50px;
+`;
 
 const NoDrinksMessage = styled.div`
   display: flex;
@@ -392,7 +419,7 @@ cursor: pointer;
 background-color: cornflowerBlue;
 padding: 15px;
 border-radius: 90px;
-margin-bottom: 0px;
+margin-bottom: 90px;
 width: 500px;
 
 
