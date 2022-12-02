@@ -1,13 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styled from "@emotion/styled";
-import listenForOutsideClick from "../src/utils/listenForOutsideClicks";
 import DrinksCard from "./DrinksCard";
 
 const DefaultCocktails = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
-  const menuRef2 = useRef(null);
+  const menuRef = useRef(null);
   const [letter, setLetter] = useState("A");
   const [limit, setLimit] = useState(5);
 
@@ -49,16 +48,6 @@ const DefaultCocktails = () => {
 
   const [IsDropdownActive, setIsDropdownActive] = useState(false);
 
-  const [listening, setListening] = useState(false);
-  useEffect(
-    listenForOutsideClick(
-      listening,
-      setListening,
-      menuRef2,
-      setIsDropdownActive
-    )
-  );
-
   const openMenu = () => {
     setIsDropdownActive(!IsDropdownActive);
   };
@@ -83,87 +72,20 @@ const DefaultCocktails = () => {
         <h2>The Drinktionary</h2>
       </MainTitle>
       <OptionsContainer>
-        <div className="container">
-          <div className="menu-container">
-            <button
-              ref={menuRef2}
-              onClick={() => openMenu()}
-              className="menu-trigger"
-              id="menu-top"
-            >
-              <span>By Category</span>
-            </button>
-            <nav className={`menu ${IsDropdownActive ? "active" : "inactive"}`}>
-              <ul>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("cocktail")}
-                    value="cocktail"
-                  >
-                    Cocktail
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("ordinary_drink")}
-                    value="ordinary_drink"
-                  >
-                    Ordinary Drink
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("shot")}
-                    value="shot"
-                  >
-                    Shot
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("punch_/_party_drink")}
-                    value="punch_/_party_drink"
-                  >
-                    Punch/Party Drink
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("beer")}
-                    value="beer"
-                  >
-                    Beer
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("shake")}
-                    value="shake"
-                  >
-                    Shake
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("coffee_/_tea")}
-                    value="coffee_/_tea"
-                  >
-                    Coffee/Tea
-                  </StyledOption>
-                </li>
-                <li>
-                  <StyledOption
-                    onClick={() => handleMenuClick("other/unknown")}
-                    value="other/unknown"
-                  >
-                    Other/Unknown
-                  </StyledOption>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
+        <select
+          onChange={(e) => getData(null, e.target.value)}
+          name="drinks"
+          id="drinks"
+        >
+          <option value="cocktail">Cocktail</option>
+          <option value="ordinary_drink">Ordinary Drink</option>
+          <option value="shot">Shot</option>
+          <option value="punch_/_party_drink">Punch/Party Drink</option>
+          <option value="beer">Beer</option>
+          <option value="shake">Shake</option>
+          <option value="coffee_/_tea">Coffee/Tea</option>
+          <option value="other/unknown">Other/Unknown</option>
+        </select>
         <AlphabetSelector>
           <li
             className={letter === "A" ? "active" : ""}
@@ -464,20 +386,19 @@ const Limit = styled.div`
 
 const NumberLimit = styled.select`
   appearance: none;
-  background-color: transparent;
-  border: solid;
-  border-radius: 8px;
-  border-color: grey;
+  background-color: lightGrey;
   padding-left: 50px;
   padding-right: 50px;
   width: 100%;
   font-family: inherit;
   font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
   cursor: pointer;
   :hover {
     border-color: lightGrey;
+  }
+  color: black;
+  :focus {
+    outline: none;
   }
 `;
 

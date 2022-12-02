@@ -9,13 +9,11 @@ export default function AgeModal() {
   const [age, setAge] = useState(0);
 
   const handleDate = function (date) {
-    console.log("date", date);
     let dateOfBirth = new Date(date);
     let monthDifference = Date.now() - dateOfBirth.getTime();
     let givenAge = new Date(monthDifference);
     let year = givenAge.getUTCFullYear();
     let age = Math.abs(year - 1970);
-    console.log("age: ", age);
     setAge(age);
     if (age >= 19) {
       setShowModal(false);
@@ -47,7 +45,10 @@ export default function AgeModal() {
 
 const Message = styled.h1`
   text-align: center;
-  width: 500px;
+
+  @media only screen and (min-width: 768px) {
+    width: 500px;
+  }
 `;
 
 const ModalOverlay = styled.div`
