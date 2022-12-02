@@ -38,7 +38,6 @@ const RandomCocktail = (isMobile) => {
           `
             )
             .then((res2) => {
-              console.log("res", res2);
               setData(res2.data.drinks[0]);
               setLoading(false);
             });
