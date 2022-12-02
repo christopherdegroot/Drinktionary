@@ -19,7 +19,11 @@ export default function DrinksCard(props) {
 
       let ingredients = [];
       ingredientsArray.forEach((ingredient) => {
-        if (ingredient != null || ingredient != undefined) {
+        if (
+          ingredient != null &&
+          ingredient != undefined &&
+          !ingredients.includes(ingredient)
+        ) {
           ingredients.push(ingredient);
         }
       });
@@ -79,6 +83,8 @@ const Dot = styled.p`
 
 const IngredientList = styled.ul`
   margin-top: 10px;
+  overflow: hidden;
+
   padding-left: 0;
   font-size: 20px;
   & :first-child {
