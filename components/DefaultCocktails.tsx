@@ -77,7 +77,6 @@ const DefaultCocktails = () => {
 
   // Conditional page renders for loading, no data, and error states
   if (loading) return <p>Loading...</p>;
-  if (!data) return <p>No data</p>;
 
   // happy path output
   return (
@@ -279,12 +278,6 @@ const DefaultCocktails = () => {
               id="menu-top"
             >
               <span>By Category</span>
-              <img
-                src="https://img.icons8.com/fluency/512/cocktail.png"
-                width="30"
-                height="30"
-                alt="drink icon"
-              />
             </button>
             <nav className={`menu ${IsDropdownActive ? "active" : "inactive"}`}>
               <ul>
@@ -357,13 +350,25 @@ const DefaultCocktails = () => {
           </div>
         </div>
       </OptionsContainer>
-      {data.slice(0, 5).map((drink) => {
-        console.log("drink:", drink);
-        return <DrinksCard data={drink}></DrinksCard>;
-      })}
+      {data ? (
+        data.slice(0, 5).map((drink) => {
+          console.log("drink:", drink);
+          return <DrinksCard data={drink}></DrinksCard>;
+        })
+      ) : (
+        <NoDrinksMessage>No drinks, try again!</NoDrinksMessage>
+      )}
     </>
   );
 };
+
+const NoDrinksMessage = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+`;
 
 const AlphabetSelector = styled.ul`
 float: left;
@@ -373,13 +378,13 @@ background-color: cornflowerBlue;
 padding: 15px;
 border-radius: 90px;
 margin-bottom: 0px;
-width: 420px;
+width: 500px;
 
 
 li {
     padding:0px;
     border-right:1px solid @darkgrey;
-    font-size: 13px;
+    font-size: 18px;
     text-align: center;
     padding-left: 3px;
     padding-right: 3px;

@@ -78,12 +78,6 @@ const RandomCocktail = () => {
               className="menu-trigger"
             >
               <span>By Category</span>
-              <img
-                src="https://img.icons8.com/fluency/512/cocktail.png"
-                width="30"
-                height="30"
-                alt="drink icon"
-              />
             </button>
             <nav className={`menu ${IsDropdownActive ? "active" : "inactive"}`}>
               <ul>
@@ -213,7 +207,7 @@ const Button = styled.button`
   height: 40px;
 
   background: cornflowerBlue;
-  border-radius: 100px;
+  border-radius: 90px;
 `;
 
 const MainTitle = styled.div`
