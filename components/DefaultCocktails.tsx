@@ -2,12 +2,11 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
-import AgeModal from "../src/components/AgeModal";
 import styled from "@emotion/styled";
 import Ingredients from "../public/assets/icons/ingredients.png";
 import listenForOutsideClick from "../src/utils/listenForOutsideClicks";
 
-const RandomCocktail = () => {
+const DefaultCocktails = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [ingredients, setIngredients] = useState([]);
@@ -286,4 +285,4 @@ const Button = styled.button`
   border-radius: 100px;
 `;
 
-export default RandomCocktail;
+export default DefaultCocktails;
