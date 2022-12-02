@@ -193,7 +193,7 @@ const Index = () => {
           </div>
         </div>
       </OptionsContainer>
-      <MainPage>
+      <DrinksCard>
         <CocktailName>{data.strDrink}</CocktailName>
 
         <IngredientsContainer>
@@ -214,7 +214,7 @@ const Index = () => {
 
         <p>Category: {data.strCategory}</p>
         <p>Glass: {data.strGlass}</p>
-      </MainPage>
+      </DrinksCard>
     </>
   );
 };
@@ -246,18 +246,20 @@ const OptionsContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 30px;
-  margin: 30px;
+  margin-top: 30px;
   width: 100%;
 `;
 
-const MainPage = styled.div`
+const DrinksCard = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
   border: white
   border-radius: 100px;
   padding: 20px;
-  margin: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-top: 30px;
 
   background: #FFFFFF;
 
