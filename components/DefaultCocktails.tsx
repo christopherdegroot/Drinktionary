@@ -77,8 +77,8 @@ const DefaultCocktails = () => {
         <h2>The Drinktionary</h2>
       </MainTitle>
       {data ? (
-        data.slice(0, limit).map((drink) => {
-          return <DrinksCard data={drink}></DrinksCard>;
+        data.slice(0, limit).map((drink, index) => {
+          return <DrinksCard key={index} data={drink}></DrinksCard>;
         })
       ) : (
         <NoDrinksMessage>No drinks, try again!</NoDrinksMessage>
