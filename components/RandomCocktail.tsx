@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import listenForOutsideClick from "../src/utils/listenForOutsideClicks";
 import DrinksCard from "./DrinksCard";
 
-const RandomCocktail = () => {
+const RandomCocktail = (isMobile) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [IsDropdownActive, setIsDropdownActive] = useState(false);
@@ -157,10 +157,24 @@ const RandomCocktail = () => {
           </div>
         </div>
       </OptionsContainer>
-      <DrinksCard data={data}></DrinksCard>
+      <DrinksListContainer>
+        <DrinksCard data={data}></DrinksCard>
+      </DrinksListContainer>
     </MainContainer>
   );
 };
+
+const DrinksListContainer = styled.div`
+  @media only screen and (max-width: 1440px) {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    margin-left: 90px;
+    margin-right: 90px;
+  }
+`;
 
 const MainContainer = styled.div`
   padding-bottom: 90px;
@@ -195,6 +209,7 @@ const OptionsContainer = styled.div`
   gap: 30px;
   margin-top: 30px;
   width: 100%;
+  margin-bottom: 50px;
 `;
 
 const Button = styled.button`
@@ -226,7 +241,6 @@ const MainTitle = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 90px;
-  width: 100vw;
 
   h2 {
     font-weight: 300;

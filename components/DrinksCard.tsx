@@ -38,28 +38,29 @@ export default function DrinksCard(props) {
 
   return (
     <DrinksCardWrapper>
-      <TitleWrapper>
-        <CocktailName>{data.strDrink} </CocktailName>
-        <Dot>•</Dot>
-        <Category> {data.strCategory}</Category>
-      </TitleWrapper>
+      <div>
+        <TitleWrapper>
+          <CocktailName>{data.strDrink} </CocktailName>
+          <Dot>•</Dot>
+          <Category> {data.strCategory}</Category>
+        </TitleWrapper>
 
-      <IngredientsContainer>
-        <Image
-          height={"24"}
-          width={"24"}
-          src={Ingredients}
-          alt="ingredients"
-        ></Image>
-        <p> </p>
-        <IngredientCount>{ingredients.length} Ingredients</IngredientCount>
-      </IngredientsContainer>
-      <IngredientList>
-        {ingredients.map((item, index) => {
-          return <Ingredient key={index}>{item} </Ingredient>;
-        })}
-      </IngredientList>
-
+        <IngredientsContainer>
+          <Image
+            height={"24"}
+            width={"24"}
+            src={Ingredients}
+            alt="ingredients"
+          ></Image>
+          <p> </p>
+          <IngredientCount>{ingredients.length} Ingredients</IngredientCount>
+        </IngredientsContainer>
+        <IngredientList>
+          {ingredients.map((item, index) => {
+            return <Ingredient key={index}>{item} </Ingredient>;
+          })}
+        </IngredientList>
+      </div>
       <GlassType>Use a {data.strGlass}</GlassType>
     </DrinksCardWrapper>
   );
@@ -74,6 +75,11 @@ const Ingredient = styled.li`
 const GlassType = styled.p`
   color: lightSlateGrey;
   font-size: 18px;
+  margin-bottom: 0px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const Dot = styled.p`
@@ -90,6 +96,10 @@ const IngredientList = styled.ul`
   & :first-of {
     list-style: none;
   }
+
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -102,6 +112,9 @@ const Category = styled.p`
   color: grey;
   font-size: 22px;
   margin-left: 10px;
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const IngredientCount = styled.span`
@@ -114,6 +127,10 @@ const CocktailName = styled.p`
   font-size: 32px;
   color: grey;
   margin-right: 10px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 const IngredientsContainer = styled.div`
@@ -128,12 +145,10 @@ const DrinksCardWrapper = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border: white
   border-radius: 100px;
   padding: 20px;
-  margin-right: 50px;
-  margin-left: 50px;
-  margin-top: 30px;
 
   background: #FFFFFF;
 
