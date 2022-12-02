@@ -12,9 +12,13 @@ const DefaultCocktails = () => {
   const [letter, setLetter] = useState("a");
 
   // function to get 1 random cocktal
-  const getData = async (letter) => {
+  const getData = async (letter?, category?) => {
     axios
-      .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
+      .get(
+        !category
+          ? `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`
+          : `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`
+      )
       .then((res) => {
         setData(res.data.drinks);
         setLoading(false);
@@ -37,7 +41,7 @@ const DefaultCocktails = () => {
   };
 
   const handleMenuClick = (option) => {
-    getData(option);
+    getData(null, option);
     setIsDropdownActive(!IsDropdownActive);
   };
 
@@ -82,13 +86,197 @@ const DefaultCocktails = () => {
         <h2>The Drinktionary</h2>
       </MainTitle>
       <OptionsContainer>
-        <Button onClick={() => getData(letter)}>Randomize!</Button>
+        <AlphabetSelector>
+          <li
+            onClick={() => {
+              getData("A");
+            }}
+          >
+            A
+          </li>
+          <li
+            onClick={() => {
+              getData("B");
+            }}
+          >
+            B
+          </li>
+          <li
+            onClick={() => {
+              getData("C");
+            }}
+          >
+            C
+          </li>
+          <li
+            onClick={() => {
+              getData("D");
+            }}
+          >
+            D
+          </li>
+          <li
+            onClick={() => {
+              getData("E");
+            }}
+          >
+            E
+          </li>
+          <li
+            onClick={() => {
+              getData("F");
+            }}
+          >
+            F
+          </li>
+          <li
+            onClick={() => {
+              getData("G");
+            }}
+          >
+            G
+          </li>
+          <li
+            onClick={() => {
+              getData("H");
+            }}
+          >
+            H
+          </li>
+          <li
+            onClick={() => {
+              getData("I");
+            }}
+          >
+            I
+          </li>
+          <li
+            onClick={() => {
+              getData("J");
+            }}
+          >
+            J
+          </li>
+          <li
+            onClick={() => {
+              getData("K");
+            }}
+          >
+            K
+          </li>
+          <li
+            onClick={() => {
+              getData("L");
+            }}
+          >
+            L
+          </li>
+          <li
+            onClick={() => {
+              getData("M");
+            }}
+          >
+            M
+          </li>
+          <li
+            onClick={() => {
+              getData("N");
+            }}
+          >
+            N
+          </li>
+          <li
+            onClick={() => {
+              getData("O");
+            }}
+          >
+            O
+          </li>
+          <li
+            onClick={() => {
+              getData("P");
+            }}
+          >
+            P
+          </li>
+          <li
+            onClick={() => {
+              getData("Q");
+            }}
+          >
+            Q
+          </li>
+          <li
+            onClick={() => {
+              getData("R");
+            }}
+          >
+            R
+          </li>
+          <li
+            onClick={() => {
+              getData("S");
+            }}
+          >
+            S
+          </li>
+          <li
+            onClick={() => {
+              getData("T");
+            }}
+          >
+            T
+          </li>
+          <li
+            onClick={() => {
+              getData("U");
+            }}
+          >
+            U
+          </li>
+          <li
+            onClick={() => {
+              getData("V");
+            }}
+          >
+            V
+          </li>
+          <li
+            onClick={() => {
+              getData("W");
+            }}
+          >
+            W
+          </li>
+          <li
+            onClick={() => {
+              getData("X");
+            }}
+          >
+            X
+          </li>
+          <li
+            onClick={() => {
+              getData("Y");
+            }}
+          >
+            Y
+          </li>
+          <li
+            onClick={() => {
+              getData("Z");
+            }}
+          >
+            Z
+          </li>
+        </AlphabetSelector>
         <div className="container">
           <div className="menu-container">
             <button
               ref={menuRef}
               onClick={() => openMenu()}
               className="menu-trigger"
+              id="menu-top"
             >
               <span>By Category</span>
               <img
@@ -177,6 +365,39 @@ const DefaultCocktails = () => {
   );
 };
 
+const AlphabetSelector = styled.ul`
+float: left;
+list-style-type: none;
+cursor: pointer;
+background-color: cornflowerBlue;
+padding: 15px;
+border-radius: 90px;
+margin-bottom: 0px;
+width: 420px;
+
+
+li {
+    padding:0px;
+    border-right:1px solid @darkgrey;
+    font-size: 13px;
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+    display:inline;
+    color: white;
+}
+
+li:last-child {
+    border:none;
+    padding-right: 0px;
+}
+
+li:hover {
+    color:@green;
+    background-color: @lightgrey;
+}
+}`;
+
 const StyledOption = styled.option`
   cursor: pointer;
 `;
@@ -198,33 +419,10 @@ const OptionsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 30px;
   margin-top: 30px;
   width: 100%;
-`;
-
-const Button = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 24px;
-  gap: 4px;
-  border: white;
-
-  cursor: pointer;
-
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-
-  color: white;
-
-  width: 220px;
-  height: 40px;
-
-  background: cornflowerBlue;
-  border-radius: 100px;
 `;
 
 export default DefaultCocktails;
