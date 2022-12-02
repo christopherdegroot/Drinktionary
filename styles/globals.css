@@ -57,6 +57,7 @@ body {
   height: 40px;
   width: 220px;
   color: white;
+  z-index: 2;
 }
 
 #menu-top {
@@ -95,6 +96,7 @@ body {
   visibility: hidden;
   transform: translateY(-20px);
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  z-index: 10;
 }
 
 .menu.active {
