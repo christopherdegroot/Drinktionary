@@ -34,7 +34,11 @@ export default function DrinksCard(props) {
 
   return (
     <DrinksCardWrapper>
-      <CocktailName>{data.strDrink}</CocktailName>
+      <TitleWrapper>
+        <CocktailName>{data.strDrink} </CocktailName>
+        <Dot>•</Dot>
+        <Category> {data.strCategory}</Category>
+      </TitleWrapper>
 
       <IngredientsContainer>
         <Image
@@ -48,31 +52,69 @@ export default function DrinksCard(props) {
       </IngredientsContainer>
       <IngredientList>
         {ingredients.map((item) => {
-          return <li key={item}>{item}</li>;
+          return <Ingredient key={item}>{item + " "} </Ingredient>;
         })}
       </IngredientList>
 
-      <p>Category: {data.strCategory}</p>
-      <p>Glass: {data.strGlass}</p>
+      <GlassType>Use a {data.strGlass}</GlassType>
     </DrinksCardWrapper>
   );
 }
 
-const IngredientList = styled.ul``;
+const Ingredient = styled.li`
+  float: left;
+  margin-right: 30px;
+  color: grey;
+`;
+
+const GlassType = styled.p`
+  color: lightSlateGrey;
+  font-size: 18px;
+`;
+
+const Dot = styled.p`
+  font-size: 24px;
+  color: grey;
+`;
+
+const IngredientList = styled.ul`
+  margin-top: 10px;
+  padding-left: 0;
+  font-size: 20px;
+  & :first-child {
+    list-style: none;
+  }
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  height: 60px;
+`;
+
+const Category = styled.p`
+  color: grey;
+  font-size: 22px;
+  margin-left: 10px;
+`;
 
 const IngredientCount = styled.span`
   color: blue;
+  font-size: 18px;
+  padding-top: 3px;
 `;
 
 const CocktailName = styled.p`
   font-size: 32px;
   color: grey;
+  margin-right: 10px;
 `;
 
 const IngredientsContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-top: 0;
   gap: 3px;
 `;
 
