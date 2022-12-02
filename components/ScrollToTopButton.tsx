@@ -22,7 +22,7 @@ const ScrollButton = styled.button`
   position: fixed;
   bottom: 20px;
   right: 30px;
-  z-index: 99;
+  z-index: 9;
   border: none;
   outline: none;
   color: white;
