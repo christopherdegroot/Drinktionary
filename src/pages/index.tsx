@@ -1,4 +1,3 @@
-import { useEffect, useState, useRef } from "react";
 import Head from "next/head";
 import AgeModal from "../components/AgeModal";
 import DefaultCocktails from "../../components/DefaultCocktails";
