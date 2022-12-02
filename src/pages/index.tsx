@@ -5,18 +5,23 @@ import Image from "next/image";
 import AgeModal from "../components/AgeModal";
 import styled from "@emotion/styled";
 import Ingredients from "../../public/assets/icons/ingredients.png";
+import listenForOutsideClick from "../utils/listenForOutsideClicks";
 
 const Index = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
-  const [error, setError] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [IsDropdownActive, setIsDropdownActive] = useState(false);
-  const ref = useRef(null);
 
-  useEffect(() => {
-    console.log("ref clicked");
-  }, [ref]);
+  const toggle = (isOpen) => {
+    return setIsDropdownActive(!isOpen);
+  };
+
+  const menuRef = useRef(null);
+  const [listening, setListening] = useState(false);
+  useEffect(
+    listenForOutsideClick(listening, setListening, menuRef, setIsDropdownActive)
+  );
 
   const openMenu = () => {
     setIsDropdownActive(!IsDropdownActive);
@@ -89,7 +94,6 @@ const Index = () => {
   // Conditional page renders for loading, no data, and error states
   if (loading) return <p>Loading...</p>;
   if (!data) return <p>No data</p>;
-  if (error) return <p>Not found in Pokedex, please refresh and try again</p>;
 
   // happy path output
   return (
@@ -103,9 +107,13 @@ const Index = () => {
       {/* <AgeModal /> */}
       <OptionsContainer>
         <Button onClick={() => getData()}>Find a New Cocktail!</Button>
-        <div ref={ref} className="container">
+        <div className="container">
           <div className="menu-container">
-            <button onClick={() => openMenu()} className="menu-trigger">
+            <button
+              ref={menuRef}
+              onClick={() => openMenu()}
+              className="menu-trigger"
+            >
               <span>Search Categories</span>
               <img
                 src="https://img.icons8.com/fluency/512/cocktail.png"
