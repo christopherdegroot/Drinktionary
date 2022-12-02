@@ -7,7 +7,6 @@ import DrinksCard from "./DrinksCard";
 const DefaultCocktails = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
-  const [ingredients, setIngredients] = useState([]);
   const menuRef2 = useRef(null);
   const [letter, setLetter] = useState("A");
   const [limit, setLimit] = useState(5);
