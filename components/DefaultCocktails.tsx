@@ -9,7 +9,7 @@ const DefaultCocktails = () => {
   const [data, setData] = useState(null);
   const [ingredients, setIngredients] = useState([]);
   const menuRef = useRef(null);
-  const [letter, setLetter] = useState("a");
+  const [letter, setLetter] = useState("A");
   const [limit, setLimit] = useState(5);
 
   // function to get 1 random cocktal
@@ -122,6 +122,242 @@ const DefaultCocktails = () => {
             <option value={50}>50</option>
           </NumberLimit>
         </Limit>
+        <AlphabetSelector>
+          <li
+            className={letter === "A" ? "active" : ""}
+            onClick={() => {
+              setLetter("A");
+              getData("A");
+            }}
+          >
+            A
+          </li>
+          <li
+            className={letter === "B" ? "active" : ""}
+            onClick={() => {
+              setLetter("B");
+              getData("B");
+            }}
+          >
+            B
+          </li>
+          <li
+            className={letter === "C" ? "active" : ""}
+            onClick={() => {
+              setLetter("C");
+              getData("C");
+            }}
+          >
+            C
+          </li>
+          <li
+            className={letter === "D" ? "active" : ""}
+            onClick={() => {
+              setLetter("D");
+              getData("D");
+            }}
+          >
+            D
+          </li>
+          <li
+            className={letter === "E" ? "active" : ""}
+            onClick={() => {
+              setLetter("E");
+              getData("E");
+            }}
+          >
+            E
+          </li>
+          <li
+            className={letter === "F" ? "active" : ""}
+            onClick={() => {
+              setLetter("F");
+              getData("F");
+            }}
+          >
+            F
+          </li>
+          <li
+            className={letter === "G" ? "active" : ""}
+            onClick={() => {
+              setLetter("G");
+              getData("G");
+            }}
+          >
+            G
+          </li>
+          <li
+            className={letter === "H" ? "active" : ""}
+            onClick={() => {
+              setLetter("H");
+              getData("H");
+            }}
+          >
+            H
+          </li>
+          <li
+            className={letter === "I" ? "active" : ""}
+            onClick={() => {
+              setLetter("I");
+              getData("I");
+            }}
+          >
+            I
+          </li>
+          <li
+            className={letter === "J" ? "active" : ""}
+            onClick={() => {
+              setLetter("J");
+              getData("J");
+            }}
+          >
+            J
+          </li>
+          <li
+            className={letter === "K" ? "active" : ""}
+            onClick={() => {
+              setLetter("K");
+              getData("K");
+            }}
+          >
+            K
+          </li>
+          <li
+            className={letter === "L" ? "active" : ""}
+            onClick={() => {
+              setLetter("L");
+              getData("L");
+            }}
+          >
+            L
+          </li>
+          <li
+            className={letter === "M" ? "active" : ""}
+            onClick={() => {
+              setLetter("M");
+              getData("M");
+            }}
+          >
+            M
+          </li>
+          <li
+            className={letter === "N" ? "active" : ""}
+            onClick={() => {
+              setLetter("N");
+              getData("N");
+            }}
+          >
+            N
+          </li>
+          <li
+            className={letter === "O" ? "active" : ""}
+            onClick={() => {
+              setLetter("O");
+              getData("O");
+            }}
+          >
+            O
+          </li>
+          <li
+            className={letter === "P" ? "active" : ""}
+            onClick={() => {
+              setLetter("P");
+              getData("P");
+            }}
+          >
+            P
+          </li>
+          <li
+            className={letter === "Q" ? "active" : ""}
+            onClick={() => {
+              setLetter("Q");
+              getData("Q");
+            }}
+          >
+            Q
+          </li>
+          <li
+            className={letter === "R" ? "active" : ""}
+            onClick={() => {
+              setLetter("R");
+              getData("R");
+            }}
+          >
+            R
+          </li>
+          <li
+            className={letter === "S" ? "active" : ""}
+            onClick={() => {
+              setLetter("S");
+              getData("S");
+            }}
+          >
+            S
+          </li>
+          <li
+            className={letter === "T" ? "active" : ""}
+            onClick={() => {
+              setLetter("T");
+              getData("T");
+            }}
+          >
+            T
+          </li>
+          <li
+            className={letter === "U" ? "active" : ""}
+            onClick={() => {
+              setLetter("U");
+              getData("U");
+            }}
+          >
+            U
+          </li>
+          <li
+            className={letter === "V" ? "active" : ""}
+            onClick={() => {
+              setLetter("V");
+              getData("V");
+            }}
+          >
+            V
+          </li>
+          <li
+            className={letter === "W" ? "active" : ""}
+            onClick={() => {
+              setLetter("W");
+              getData("W");
+            }}
+          >
+            W
+          </li>
+          <li
+            className={letter === "X" ? "active" : ""}
+            onClick={() => {
+              setLetter("X");
+              getData("X");
+            }}
+          >
+            X
+          </li>
+          <li
+            className={letter === "Y" ? "active" : ""}
+            onClick={() => {
+              setLetter("Y");
+              getData("Y");
+            }}
+          >
+            Y
+          </li>
+          <li
+            className={letter === "Z" ? "active" : ""}
+            onClick={() => {
+              setLetter("Z");
+              getData("Z");
+            }}
+          >
+            Z
+          </li>
+        </AlphabetSelector>
         <div className="container">
           <div className="menu-container">
             <button
@@ -202,191 +438,6 @@ const DefaultCocktails = () => {
             </nav>
           </div>
         </div>
-
-        <AlphabetSelector>
-          <li
-            onClick={() => {
-              getData("A");
-            }}
-          >
-            A
-          </li>
-          <li
-            onClick={() => {
-              getData("B");
-            }}
-          >
-            B
-          </li>
-          <li
-            onClick={() => {
-              getData("C");
-            }}
-          >
-            C
-          </li>
-          <li
-            onClick={() => {
-              getData("D");
-            }}
-          >
-            D
-          </li>
-          <li
-            onClick={() => {
-              getData("E");
-            }}
-          >
-            E
-          </li>
-          <li
-            onClick={() => {
-              getData("F");
-            }}
-          >
-            F
-          </li>
-          <li
-            onClick={() => {
-              getData("G");
-            }}
-          >
-            G
-          </li>
-          <li
-            onClick={() => {
-              getData("H");
-            }}
-          >
-            H
-          </li>
-          <li
-            onClick={() => {
-              getData("I");
-            }}
-          >
-            I
-          </li>
-          <li
-            onClick={() => {
-              getData("J");
-            }}
-          >
-            J
-          </li>
-          <li
-            onClick={() => {
-              getData("K");
-            }}
-          >
-            K
-          </li>
-          <li
-            onClick={() => {
-              getData("L");
-            }}
-          >
-            L
-          </li>
-          <li
-            onClick={() => {
-              getData("M");
-            }}
-          >
-            M
-          </li>
-          <li
-            onClick={() => {
-              getData("N");
-            }}
-          >
-            N
-          </li>
-          <li
-            onClick={() => {
-              getData("O");
-            }}
-          >
-            O
-          </li>
-          <li
-            onClick={() => {
-              getData("P");
-            }}
-          >
-            P
-          </li>
-          <li
-            onClick={() => {
-              getData("Q");
-            }}
-          >
-            Q
-          </li>
-          <li
-            onClick={() => {
-              getData("R");
-            }}
-          >
-            R
-          </li>
-          <li
-            onClick={() => {
-              getData("S");
-            }}
-          >
-            S
-          </li>
-          <li
-            onClick={() => {
-              getData("T");
-            }}
-          >
-            T
-          </li>
-          <li
-            onClick={() => {
-              getData("U");
-            }}
-          >
-            U
-          </li>
-          <li
-            onClick={() => {
-              getData("V");
-            }}
-          >
-            V
-          </li>
-          <li
-            onClick={() => {
-              getData("W");
-            }}
-          >
-            W
-          </li>
-          <li
-            onClick={() => {
-              getData("X");
-            }}
-          >
-            X
-          </li>
-          <li
-            onClick={() => {
-              getData("Y");
-            }}
-          >
-            Y
-          </li>
-          <li
-            onClick={() => {
-              getData("Z");
-            }}
-          >
-            Z
-          </li>
-        </AlphabetSelector>
       </OptionsContainer>
     </>
   );
@@ -413,14 +464,14 @@ const NoDrinksMessage = styled.div`
 `;
 
 const AlphabetSelector = styled.ul`
+display: flex;
+justify-content: space-between;
 float: left;
 list-style-type: none;
 cursor: pointer;
-background-color: cornflowerBlue;
 padding: 15px;
 border-radius: 90px;
-margin-bottom: 90px;
-width: 500px;
+width: 80%;
 
 
 li {
@@ -431,7 +482,13 @@ li {
     padding-left: 3px;
     padding-right: 3px;
     display:inline;
-    color: white;
+    color: grey;
+
+   
+}
+
+.active {
+  color: blue;
 }
 
 li:last-child {
