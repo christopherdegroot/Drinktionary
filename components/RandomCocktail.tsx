@@ -138,6 +138,10 @@ const OptionsContainer = styled.div`
   margin-top: 30px;
   width: 100%;
   margin-bottom: 50px;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Button = styled.button`
