@@ -55,8 +55,8 @@ export default function DrinksCard(props) {
         <IngredientCount>{ingredients.length} Ingredients</IngredientCount>
       </IngredientsContainer>
       <IngredientList>
-        {ingredients.map((item) => {
-          return <Ingredient key={item}>{item + " "} </Ingredient>;
+        {ingredients.map((item, index) => {
+          return <Ingredient key={index}>{item} </Ingredient>;
         })}
       </IngredientList>
 
@@ -87,7 +87,7 @@ const IngredientList = styled.ul`
 
   padding-left: 0;
   font-size: 20px;
-  & :first-child {
+  & :first-of {
     list-style: none;
   }
 `;
