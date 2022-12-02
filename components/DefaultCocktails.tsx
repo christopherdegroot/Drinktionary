@@ -8,29 +8,14 @@ const DefaultCocktails = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [ingredients, setIngredients] = useState([]);
-  const [IsDropdownActive, setIsDropdownActive] = useState(false);
-
   const menuRef = useRef(null);
-  const [listening, setListening] = useState(false);
-  useEffect(
-    listenForOutsideClick(listening, setListening, menuRef, setIsDropdownActive)
-  );
-
-  const openMenu = () => {
-    setIsDropdownActive(!IsDropdownActive);
-  };
-
-  const handleMenuClick = (option) => {
-    getData(option);
-    setIsDropdownActive(!IsDropdownActive);
-  };
+  const [letter, setLetter] = useState("a");
 
   // function to get 1 random cocktal
-  const getData = async (searchTerm?) => {
+  const getData = async (letter) => {
     axios
-      .get("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a")
+      .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
       .then((res) => {
-        console.log("res.data in default:", res.data);
         setData(res.data.drinks);
         setLoading(false);
       })
@@ -63,7 +48,7 @@ const DefaultCocktails = () => {
 
   // Get random cocktail on page load
   useEffect(() => {
-    getData();
+    getData(letter);
   }, []);
 
   useEffect(() => {
@@ -77,13 +62,32 @@ const DefaultCocktails = () => {
   // happy path output
   return (
     <>
-      <DrinksCard data={data}></DrinksCard>
+      <MainTitle>
+        <h2>The Drinktionary</h2>
+      </MainTitle>
+      {data.slice(0, 5).map((drink) => {
+        console.log("drink:", drink);
+        return <DrinksCard data={drink}></DrinksCard>;
+      })}
     </>
   );
 };
 
 const StyledOption = styled.option`
   cursor: pointer;
+`;
+
+const MainTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  width: 100vw;
+
+  h2 {
+    font-weight: 300;
+    font-size: 48px;
+  }
 `;
 
 export default DefaultCocktails;
