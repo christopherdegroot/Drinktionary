@@ -20,8 +20,24 @@ const DefaultCocktails = () => {
           : `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`
       )
       .then((res) => {
-        setData(res.data.drinks);
-        setLoading(false);
+        if (category) {
+          let dataArray = [];
+          res.data.drinks.map((drink) => {
+            axios
+              .get(
+                `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}
+            `
+              )
+              .then((res2) => {
+                dataArray.push(res2.data.drinks[0]);
+                setData(dataArray);
+                setLoading(false);
+              });
+          });
+        } else {
+          setData(res.data.drinks);
+          setLoading(false);
+        }
       })
       .catch(function (error) {
         console.log("error:", error);
@@ -352,7 +368,6 @@ const DefaultCocktails = () => {
       </OptionsContainer>
       {data ? (
         data.slice(0, 5).map((drink) => {
-          console.log("drink:", drink);
           return <DrinksCard data={drink}></DrinksCard>;
         })
       ) : (
