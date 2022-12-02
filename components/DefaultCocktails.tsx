@@ -8,21 +8,22 @@ const DefaultCocktails = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [ingredients, setIngredients] = useState([]);
-  const menuRef = useRef(null);
+  const menuRef2 = useRef(null);
   const [letter, setLetter] = useState("A");
   const [limit, setLimit] = useState(5);
 
   // function to get 1 random cocktal
-  const getData = async (letter?, category?) => {
+  const getData = async (letter, category) => {
     axios
       .get(
-        !category
+        category === null
           ? `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`
           : `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`
       )
       .then((res) => {
+        const categoryCount = res.data.drinks.length;
         if (category) {
-          let dataArray = [];
+          const dataArray = [];
           res.data.drinks.map((drink) => {
             axios
               .get(
@@ -31,8 +32,9 @@ const DefaultCocktails = () => {
               )
               .then((res2) => {
                 dataArray.push(res2.data.drinks[0]);
-                setData(dataArray);
-                setLoading(false);
+                if (dataArray.length == categoryCount) {
+                  setData(dataArray);
+                }
               });
           });
         } else {
@@ -50,7 +52,12 @@ const DefaultCocktails = () => {
 
   const [listening, setListening] = useState(false);
   useEffect(
-    listenForOutsideClick(listening, setListening, menuRef, setIsDropdownActive)
+    listenForOutsideClick(
+      listening,
+      setListening,
+      menuRef2,
+      setIsDropdownActive
+    )
   );
 
   const openMenu = () => {
@@ -64,7 +71,7 @@ const DefaultCocktails = () => {
 
   // Get random cocktail on page load
   useEffect(() => {
-    getData(letter);
+    getData(letter, null);
   }, []);
 
   // Conditional page renders for loading, no data, and error states
@@ -102,7 +109,7 @@ const DefaultCocktails = () => {
             className={letter === "A" ? "active" : ""}
             onClick={() => {
               setLetter("A");
-              getData("A");
+              getData("A", null);
             }}
           >
             A
@@ -111,7 +118,7 @@ const DefaultCocktails = () => {
             className={letter === "B" ? "active" : ""}
             onClick={() => {
               setLetter("B");
-              getData("B");
+              getData("B", null);
             }}
           >
             B
@@ -120,7 +127,7 @@ const DefaultCocktails = () => {
             className={letter === "C" ? "active" : ""}
             onClick={() => {
               setLetter("C");
-              getData("C");
+              getData("C", null);
             }}
           >
             C
@@ -129,7 +136,7 @@ const DefaultCocktails = () => {
             className={letter === "D" ? "active" : ""}
             onClick={() => {
               setLetter("D");
-              getData("D");
+              getData("D", null);
             }}
           >
             D
@@ -138,7 +145,7 @@ const DefaultCocktails = () => {
             className={letter === "E" ? "active" : ""}
             onClick={() => {
               setLetter("E");
-              getData("E");
+              getData("E", null);
             }}
           >
             E
@@ -147,7 +154,7 @@ const DefaultCocktails = () => {
             className={letter === "F" ? "active" : ""}
             onClick={() => {
               setLetter("F");
-              getData("F");
+              getData("F", null);
             }}
           >
             F
@@ -156,7 +163,7 @@ const DefaultCocktails = () => {
             className={letter === "G" ? "active" : ""}
             onClick={() => {
               setLetter("G");
-              getData("G");
+              getData("G", null);
             }}
           >
             G
@@ -165,7 +172,7 @@ const DefaultCocktails = () => {
             className={letter === "H" ? "active" : ""}
             onClick={() => {
               setLetter("H");
-              getData("H");
+              getData("H", null);
             }}
           >
             H
@@ -174,7 +181,7 @@ const DefaultCocktails = () => {
             className={letter === "I" ? "active" : ""}
             onClick={() => {
               setLetter("I");
-              getData("I");
+              getData("I", null);
             }}
           >
             I
@@ -183,7 +190,7 @@ const DefaultCocktails = () => {
             className={letter === "J" ? "active" : ""}
             onClick={() => {
               setLetter("J");
-              getData("J");
+              getData("J", null);
             }}
           >
             J
@@ -192,7 +199,7 @@ const DefaultCocktails = () => {
             className={letter === "K" ? "active" : ""}
             onClick={() => {
               setLetter("K");
-              getData("K");
+              getData("K", null);
             }}
           >
             K
@@ -201,7 +208,7 @@ const DefaultCocktails = () => {
             className={letter === "L" ? "active" : ""}
             onClick={() => {
               setLetter("L");
-              getData("L");
+              getData("L", null);
             }}
           >
             L
@@ -210,7 +217,7 @@ const DefaultCocktails = () => {
             className={letter === "M" ? "active" : ""}
             onClick={() => {
               setLetter("M");
-              getData("M");
+              getData("M", null);
             }}
           >
             M
@@ -219,7 +226,7 @@ const DefaultCocktails = () => {
             className={letter === "N" ? "active" : ""}
             onClick={() => {
               setLetter("N");
-              getData("N");
+              getData("N", null);
             }}
           >
             N
@@ -228,7 +235,7 @@ const DefaultCocktails = () => {
             className={letter === "O" ? "active" : ""}
             onClick={() => {
               setLetter("O");
-              getData("O");
+              getData("O", null);
             }}
           >
             O
@@ -237,7 +244,7 @@ const DefaultCocktails = () => {
             className={letter === "P" ? "active" : ""}
             onClick={() => {
               setLetter("P");
-              getData("P");
+              getData("P", null);
             }}
           >
             P
@@ -246,7 +253,7 @@ const DefaultCocktails = () => {
             className={letter === "Q" ? "active" : ""}
             onClick={() => {
               setLetter("Q");
-              getData("Q");
+              getData("Q", null);
             }}
           >
             Q
@@ -255,7 +262,7 @@ const DefaultCocktails = () => {
             className={letter === "R" ? "active" : ""}
             onClick={() => {
               setLetter("R");
-              getData("R");
+              getData("R", null);
             }}
           >
             R
@@ -264,7 +271,7 @@ const DefaultCocktails = () => {
             className={letter === "S" ? "active" : ""}
             onClick={() => {
               setLetter("S");
-              getData("S");
+              getData("S", null);
             }}
           >
             S
@@ -273,7 +280,7 @@ const DefaultCocktails = () => {
             className={letter === "T" ? "active" : ""}
             onClick={() => {
               setLetter("T");
-              getData("T");
+              getData("T", null);
             }}
           >
             T
@@ -282,7 +289,7 @@ const DefaultCocktails = () => {
             className={letter === "U" ? "active" : ""}
             onClick={() => {
               setLetter("U");
-              getData("U");
+              getData("U", null);
             }}
           >
             U
@@ -291,7 +298,7 @@ const DefaultCocktails = () => {
             className={letter === "V" ? "active" : ""}
             onClick={() => {
               setLetter("V");
-              getData("V");
+              getData("V", null);
             }}
           >
             V
@@ -300,7 +307,7 @@ const DefaultCocktails = () => {
             className={letter === "W" ? "active" : ""}
             onClick={() => {
               setLetter("W");
-              getData("W");
+              getData("W", null);
             }}
           >
             W
@@ -309,7 +316,7 @@ const DefaultCocktails = () => {
             className={letter === "X" ? "active" : ""}
             onClick={() => {
               setLetter("X");
-              getData("X");
+              getData("X", null);
             }}
           >
             X
@@ -318,7 +325,7 @@ const DefaultCocktails = () => {
             className={letter === "Y" ? "active" : ""}
             onClick={() => {
               setLetter("Y");
-              getData("Y");
+              getData("Y", null);
             }}
           >
             Y
@@ -327,7 +334,7 @@ const DefaultCocktails = () => {
             className={letter === "Z" ? "active" : ""}
             onClick={() => {
               setLetter("Z");
-              getData("Z");
+              getData("Z", null);
             }}
           >
             Z
@@ -336,7 +343,7 @@ const DefaultCocktails = () => {
         <div className="container">
           <div className="menu-container">
             <button
-              ref={menuRef}
+              ref={menuRef2}
               onClick={() => openMenu()}
               className="menu-trigger"
               id="menu-top"
