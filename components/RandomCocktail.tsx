@@ -218,7 +218,7 @@ const MainTitle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 90px;
   width: 100vw;
 
   h2 {
