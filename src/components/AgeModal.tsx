@@ -47,7 +47,10 @@ export default function AgeModal() {
 
 const Message = styled.h1`
   text-align: center;
-  width: 500px;
+
+  @media only screen and (min-width: 768px) {
+    width: 500px;
+  }
 `;
 
 const ModalOverlay = styled.div`
