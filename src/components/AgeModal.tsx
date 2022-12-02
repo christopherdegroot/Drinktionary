@@ -62,7 +62,7 @@ const ModalOverlay = styled.div`
   height: 100vh;
   z-index: 99;
 
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(8px);
 `;
 
 const Container = styled.div`
