@@ -15,7 +15,7 @@ const Index = () => {
       </Head>
       <DefaultCocktails />
       <RandomCocktail />
-      {/* <AgeModal /> */}
+      <AgeModal />
       <ScrollToTopButton></ScrollToTopButton>
     </>
   );
