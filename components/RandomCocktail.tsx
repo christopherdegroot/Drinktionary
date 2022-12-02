@@ -1,14 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Image from "next/image";
 import styled from "@emotion/styled";
-import Ingredients from "../public/assets/icons/ingredients.png";
 import listenForOutsideClick from "../src/utils/listenForOutsideClicks";
+import DrinksCard from "./DrinksCard";
 
 const RandomCocktail = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
-  const [ingredients, setIngredients] = useState([]);
   const [IsDropdownActive, setIsDropdownActive] = useState(false);
 
   const menuRef = useRef(null);
@@ -55,35 +53,10 @@ const RandomCocktail = () => {
       });
   };
 
-  const getIngredients = () => {
-    if (data) {
-      let ingredientsKeys = Object.keys(data).filter((key) =>
-        key.includes("strIngredient")
-      );
-
-      let ingredientsArray = ingredientsKeys.map((ingredient) => {
-        return data[ingredient];
-      });
-
-      let ingredients = [];
-      ingredientsArray.forEach((ingredient) => {
-        if (ingredient != null || ingredient != undefined) {
-          ingredients.push(ingredient);
-        }
-      });
-
-      setIngredients(ingredients);
-    }
-  };
-
   // Get random cocktail on page load
   useEffect(() => {
     getData();
   }, []);
-
-  useEffect(() => {
-    getIngredients();
-  }, [data]);
 
   // Conditional page renders for loading, no data, and error states
   if (loading) return <p>Loading...</p>;
@@ -180,28 +153,7 @@ const RandomCocktail = () => {
           </div>
         </div>
       </OptionsContainer>
-      <DrinksCard>
-        <CocktailName>{data.strDrink}</CocktailName>
-
-        <IngredientsContainer>
-          <Image
-            height={"24"}
-            width={"24"}
-            src={Ingredients}
-            alt="ingredients"
-          ></Image>
-          <p> </p>
-          <IngredientCount>{ingredients.length} Ingredients</IngredientCount>
-        </IngredientsContainer>
-        <IngredientList>
-          {ingredients.map((item) => {
-            return <li key={item}>{item}</li>;
-          })}
-        </IngredientList>
-
-        <p>Category: {data.strCategory}</p>
-        <p>Glass: {data.strGlass}</p>
-      </DrinksCard>
+      <DrinksCard data={data}></DrinksCard>
     </>
   );
 };
@@ -235,23 +187,6 @@ const OptionsContainer = styled.div`
   gap: 30px;
   margin-top: 30px;
   width: 100%;
-`;
-
-const DrinksCard = styled.div`
-  background: white;
-  display: flex;
-  flex-direction: column;
-  border: white
-  border-radius: 100px;
-  padding: 20px;
-  margin-right: 50px;
-  margin-left: 50px;
-  margin-top: 30px;
-
-  background: #FFFFFF;
-
-  box-shadow: 0px 2px 5px 2px rgba(208, 217, 221, 0.4);
-  border-radius: 20px;
 `;
 
 const Button = styled.button`
