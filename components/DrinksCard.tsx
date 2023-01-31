@@ -13,6 +13,8 @@ export default function DrinksCard(props) {
         key.includes("strIngredient")
       );
 
+      console.log(data);
+
       let ingredientsArray = ingredientsKeys.map((ingredient) => {
         return data[ingredient];
       });
